@@ -1,0 +1,602 @@
+/* --- Reset and base styles for a clean slate --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Main font and smooth transitions for the app */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Hide stuff meant only for screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Theme variables: easy color changes for light/dark mode --- */
+:root {
+  --primary-color: #2563eb;
+  --secondary-color: #1e40af;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --bg-color: #f1f1f1;
+  --bg-secondary: #f8fafc;
+  --text-color: #1f2937;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* Dark theme tweaks */
+[data-theme="dark"] {
+  --bg-color: #111827;
+  --bg-secondary: #1f2937;
+  --text-color: #f9fafb;
+  --text-secondary: #d1d5db;
+  --border-color: #374151;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+  --focus-ring: 0 0 0 3px rgba(96, 165, 250, 0.3);
+}
+
+/* Show a nice focus ring when using keyboard navigation */
+*:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* --- Layout helpers --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* --- Header styles --- */
+.header {
+  background-color: var(--bg-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* Theme toggle button for switching light/dark mode */
+.theme-toggle {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.theme-toggle:hover {
+  background: var(--secondary-color);
+}
+.theme-toggle:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+/* --- Main content area --- */
+.main {
+  padding: 2rem 0;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* --- Task form styles --- */
+.task-form-section {
+  background: var(--bg-secondary);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.2s ease;
+}
+.task-form-section:focus-within {
+  box-shadow: 0 0 0 1px var(--primary-color);
+}
+.form-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-color);
+}
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: var(--focus-ring);
+  transform: translateY(-1px);
+}
+.form-input:invalid,
+.form-select:invalid,
+.form-textarea:invalid {
+  border-color: var(--danger-color);
+}
+.form-textarea {
+  min-height: 4rem;
+  resize: vertical;
+}
+.form-hint {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+.form-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+/* --- Buttons: primary, secondary, success, danger --- */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  position: relative;
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+}
+.btn-primary:hover:not(:disabled) {
+  background: var(--secondary-color);
+}
+.btn-secondary {
+  background: var(--text-secondary);
+  color: white;
+}
+.btn-secondary:hover:not(:disabled) {
+  opacity: 0.8;
+}
+.btn-danger {
+  background: var(--danger-color);
+  color: white;
+}
+.btn-danger:hover:not(:disabled) {
+  opacity: 0.8;
+}
+.btn-success {
+  background: var(--success-color);
+  color: white;
+}
+.btn-success:hover:not(:disabled) {
+  opacity: 0.8;
+}
+.btn.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+  position: relative;
+}
+.btn:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.btn:not(:disabled):active {
+  transform: translateY(0);
+}
+.btn-sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+}
+
+/* --- Task list container and items --- */
+.task-list-section {
+  background: var(--bg-secondary);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+.task-count {
+  background: var(--primary-color);
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* --- Filters and search bar --- */
+.filters {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+.search-wrapper,
+.filter-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.search-input {
+  flex: 1;
+  min-width: 200px;
+}
+.filter-select {
+  min-width: 120px;
+}
+
+/* --- Task cards --- */
+.task-item {
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.task-item:hover {
+  box-shadow: var(--shadow-md);
+}
+.task-item:focus-within {
+  box-shadow: var(--focus-ring);
+}
+.task-item.completed {
+  opacity: 0.7;
+  background: var(--bg-secondary);
+}
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.task-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin: 0;
+  word-break: break-word;
+}
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+.task-meta {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.priority-badge,
+.category-badge {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+}
+.priority-high {
+  background: var(--danger-color);
+  color: white;
+  border-color: var(--danger-color);
+}
+.priority-medium {
+  background: var(--warning-color);
+  color: white;
+  border-color: var(--warning-color);
+}
+.priority-low {
+  background: var(--success-color);
+  color: white;
+  border-color: var(--success-color);
+}
+.category-badge {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+.task-description {
+  color: var(--text-secondary);
+  margin: 0.5rem 0;
+  line-height: 1.5;
+  word-break: break-word;
+}
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* --- Empty state: friendly message when there are no tasks --- */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-secondary);
+}
+.empty-state h3 {
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+/* --- Notification toast (top right) --- */
+.notification {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: var(--success-color);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  max-width: 300px;
+  word-wrap: break-word;
+}
+.notification.show {
+  transform: translateX(0);
+}
+.notification.error {
+  background: var(--danger-color);
+}
+.notification.warning {
+  background: var(--warning-color);
+}
+.notification.success {
+  background: var(--success-color);
+}
+
+/* --- Error messages below form fields --- */
+.error-message {
+  color: var(--danger-color);
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(239, 68, 68, 0.1);
+  border-radius: 0.25rem;
+  margin-top: 0.5rem;
+}
+.error-message:empty {
+  display: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* --- Character counter for form inputs --- */
+.char-counter {
+  text-align: right;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  transition: color 0.2s ease;
+}
+.char-counter.warning {
+  color: var(--warning-color);
+  font-weight: 500;
+}
+.char-counter.danger {
+  color: var(--danger-color);
+  font-weight: 500;
+}
+
+/* --- Form input validation states --- */
+.form-input.valid {
+  border-color: var(--success-color);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.1);
+}
+.form-input.invalid {
+  border-color: var(--danger-color);
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.1);
+  animation: shake 0.3s ease-in-out;
+}
+
+/* --- Shake animation for invalid input --- */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+/* --- Responsive tweaks for mobile and small screens --- */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .app-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .filters {
+    flex-direction: column;
+  }
+  .search-input,
+  .filter-select {
+    min-width: 100%;
+  }
+  .task-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .task-meta {
+    margin-top: 0.5rem;
+  }
+  .task-actions {
+    justify-content: flex-start;
+  }
+  .notification {
+    right: 1rem;
+    left: 1rem;
+    top: 1rem;
+    max-width: none;
+  }
+}
+@media (max-width: 480px) {
+  .main {
+    padding: 1rem 0;
+  }
+  .task-form-section,
+  .task-list-section {
+    padding: 1rem;
+  }
+  .form-actions {
+    flex-direction: column;
+  }
+  .btn {
+    justify-content: center;
+  }
+  .task-actions {
+    flex-direction: column;
+  }
+  .logo {
+    font-size: 1.25rem;
+  }
+}
+
+/* --- Accessibility: high contrast and reduced motion --- */
+@media (prefers-contrast: high) {
+  :root {
+    --border-color: #000000;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  [data-theme="dark"] {
+    --border-color: #ffffff;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Print-friendly tweaks --- */
+@media print {
+  .header,
+  .theme-toggle,
+  .form-actions,
+  .task-actions,
+  .filters,
+  .notification {
+    display: none;
+  }
+  .app-grid {
+    grid-template-columns: 1fr;
+  }
+  .task-form-section {
+    display: none;
+  }
+  body {
+    background: white;
+    color: black;
+  }
+  .task-item {
+    border: 1px solid #ccc;
+    break-inside: avoid;
+    margin-bottom: 1rem;
+  }
+  .priority-badge,
+  .category-badge {
+    border: 1px solid #333;
+    color: #000;
+    background: #fff;
+  }
+}

@@ -1,0 +1,57 @@
+
+
+  
+Welcome to Task Central, a modern, mobile-friendly web application for managing your daily tasks with ease.
+
+**[1. Adding a Task]**  
+Let’s start by adding a new task.  
+On the left, fill in the task title, description, select a priority, and choose a category.  
+Click “Add Task.”  
+You’ll see the new task instantly appear in your task list, and a notification confirms it was added.
+
+---
+
+**[2. Editing and Deleting Tasks]**  
+To edit a task, click the “Edit” button.  
+The form updates, letting you change any details.  
+Click “Update Task” to save changes.  
+To remove a task, click the “Delete” button and confirm—your list updates right away.
+
+---
+
+**[3. Marking Tasks as Complete**]  
+Click the circle icon to mark a task as complete.  
+The task is visually distinguished with a strikethrough, and a notification lets you know it’s done.  
+You can also mark it as incomplete if needed.
+
+---
+
+**[4. Organizing and Filtering]**  
+Use the search bar to quickly find tasks by title or description.  
+You can filter tasks by category or priority for focused views.  
+The task count updates to show how many tasks match your filters.
+
+---
+
+**[5. Responsive Design and Accessibility]**  
+Task Central is fully responsive—try resizing your browser or using it on your phone.  
+The layout adapts for easy use on any device.  
+Accessibility features like ARIA labels and keyboard navigation are included for all users.
+
+---
+
+**[6. Theme Toggle]**  
+Switch between light and dark mode using the toggle in the header.  
+Your theme preference is remembered for next time.
+
+---
+
+**[7. Design Decisions]**  
+- We chose a soft light grey background to reduce glare and eye strain.  
+- Cards and forms use subtle shadows and rounded corners for a modern, friendly look.  
+- Color-coded badges make priorities and categories easy to spot.  
+- Notifications provide instant feedback for all actions.  
+- All data is saved locally, so your tasks persist without needing an account.
+
+---
+

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A professional task management application" />
+    <title>TASK CENTRAL</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-theme="light">
+    <!-- Header with logo and theme toggle -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <h1 class="logo">📋 TASK CENTRAL</h1>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            🌙 Dark Mode
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main app area: Task form and task list -->
+    <main class="main">
+      <div class="container">
+        <div class="app-grid">
+          <!-- Add/Edit Task Form -->
+          <section class="task-form-section" aria-labelledby="form-title">
+            <h2 class="form-title" id="form-title">Add New Task</h2>
+            <form id="taskForm" novalidate>
+              <div class="form-group">
+                <label for="taskTitle">Task Title *</label>
+                <input
+                  type="text"
+                  id="taskTitle"
+                  class="form-input"
+                  placeholder="Enter task title"
+                  maxlength="100"
+                  required
+                  aria-describedby="titleError"
+                />
+                <div class="error-message" id="titleError" role="alert" aria-live="polite"></div>
+              </div>
+              <div class="form-group">
+                <label for="taskDescription">Description</label>
+                <textarea
+                  id="taskDescription"
+                  class="form-textarea"
+                  placeholder="Enter task description"
+                  maxlength="500"
+                  aria-describedby="descriptionHint"
+                ></textarea>
+                <div id="descriptionHint" class="form-hint">
+                  Maximum 500 characters
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="taskPriority">Priority *</label>
+                <select
+                  id="taskPriority"
+                  class="form-select"
+                  required
+                  aria-describedby="priorityError"
+                >
+                  <option value="">Select Priority</option>
+                  <option value="low">Low Priority</option>
+                  <option value="medium">Medium Priority</option>
+                  <option value="high">High Priority</option>
+                </select>
+                <div class="error-message" id="priorityError" role="alert" aria-live="polite"></div>
+              </div>
+              <div class="form-group">
+                <label for="taskCategory">Category *</label>
+                <select
+                  id="taskCategory"
+                  class="form-select"
+                  required
+                  aria-describedby="categoryError"
+                >
+                  <option value="">Select Category</option>
+                  <option value="personal">Personal</option>
+                  <option value="work">Work</option>
+                  <option value="urgent">Urgent</option>
+                </select>
+                <div class="error-message" id="categoryError" role="alert" aria-live="polite"></div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                  <span aria-hidden="true">✅</span> Add Task
+                </button>
+                <button type="button" class="btn btn-secondary" id="cancelBtn" style="display: none">
+                  <span aria-hidden="true">❌</span> Cancel
+                </button>
+              </div>
+            </form>
+          </section>
+
+          <!-- Task List and Filters -->
+          <section class="task-list-section" aria-labelledby="task-list-title">
+            <div class="section-header">
+              <h2 class="section-title" id="task-list-title">Your Tasks</h2>
+              <span class="task-count" id="taskCount" aria-live="polite">0 tasks</span>
+            </div>
+            <div class="filters" role="search" aria-label="Filter and search tasks">
+              <div class="search-wrapper">
+                <label for="searchInput" class="sr-only">Search tasks</label>
+                <input
+                  type="text"
+                  id="searchInput"
+                  class="form-input search-input"
+                  placeholder="🔍 Search tasks..."
+                  aria-label="Search tasks by title or description"
+                />
+              </div>
+              <div class="filter-wrapper">
+                <label for="categoryFilter" class="sr-only">Filter by category</label>
+                <select
+                  id="categoryFilter"
+                  class="form-select filter-select"
+                  aria-label="Filter by category"
+                >
+                  <option value="">All Categories</option>
+                  <option value="personal">Personal</option>
+                  <option value="work">Work</option>
+                  <option value="urgent">Urgent</option>
+                </select>
+              </div>
+              <div class="filter-wrapper">
+                <label for="priorityFilter" class="sr-only">Filter by priority</label>
+                <select
+                  id="priorityFilter"
+                  class="form-select filter-select"
+                  aria-label="Filter by priority"
+                >
+                  <option value="">All Priorities</option>
+                  <option value="high">High Priority</option>
+                  <option value="medium">Medium Priority</option>
+                  <option value="low">Low Priority</option>
+                </select>
+              </div>
+            </div>
+            <div id="taskList" class="task-list" role="list" aria-live="polite" aria-label="Task list">
+              <!-- Tasks will be rendered here -->
+            </div>
+            <div id="emptyState" class="empty-state" style="display: none">
+              <h3>No tasks found</h3>
+              <p>Create your first task to get started!</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <!-- For screen readers and notifications -->
+    <div id="announcements" aria-live="assertive" aria-atomic="true" class="sr-only"></div>
+    <div id="notification" class="notification" role="alert" aria-live="assertive"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
